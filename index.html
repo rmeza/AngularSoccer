@@ -1,5 +1,5 @@
-<!doctype html>
-<html ng-app="soccerApp">
+<!--doctype html-->
+<!--html ng-app="soccerApp">
   <head>
     <script src="bower_components/angular/angular.min.js"></script>
   </head>
@@ -14,14 +14,61 @@
           <div class="col-md-12">
             <h1>{{players.name}}</h1>
             
-          </div><!-- col-md-12 -->
-        </div><!-- row -->
+          </div>
+        </div>
         
         
-    </div><!-- container -->
+    </div>
       
 <script type="text/javascript" src="js/app.js"></script>
 <script type="text/javascript" src="js/controllers.js"></script>
       
   </body>
+</html-->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="utf-8">
+    <title>My client Api</title>
+	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+   
+  
+</head>
+<body>
+    <div class="container" ng-controller="ctrlCustomer">
+	<div class="table table-bordered table-hover">       
+	   <div class="row">
+            <div class="col-md-3">
+                <b>Company</b>
+            </div>
+            <div class="col-md-3">
+                <b>Representative</b>
+            </div>
+            <div class="col-lg-5">
+                <b>Address</b>
+            </div>
+        </div>
+	</div>
+        <div ng-repeat="customers in AllCustomer|filter:search">
+            <div class="col-lg-3">
+                <a href="#" ng-click="GetCustomerByCustomerID(customers.ID)" data-toggle="modal" data-target="#customerByIDModal" style="margin-left:0px">{{customers.CompanyName}}</a>
+            </div>
+            <div class="col-lg-3">
+                <b>{{customers.ContactName}}</b><br />
+                {{custoners.ContactTitle}}
+            </div>
+            <div class="col-lg-5">
+                {{customers.Address}}<br />
+                {{customers.City}},{{customers.Country}}
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/controllers.js"></script>
+	
+</body>
 </html>
