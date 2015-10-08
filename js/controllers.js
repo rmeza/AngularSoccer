@@ -11,33 +11,37 @@ soccerApp.controller('ListCtrl',['$scope','$http',
         
     }]);*/
 
-var app = angular.module('myApp', []);
+//var app = angular.module('myApp', []);
+(function(){
+	
+	angular.module('controllers',[])
+	.controller('ctrlCustomer', function ($scope, $http) {
+		//call to web API
+		var server = 'http://localhost:51671';
+		var Url = server +'/api/Customer/getAllCustomers'
+		$http({
+			method: 'GET',
+			url: Url
+		}).success(function (customerList) {
+			$scope.AllCustomer = customerList;
+		}).error(function () {
+			console.log('An error in getAllCustomer');
+		});
 
-app.controller('ctrlCustomer', function ($scope, $http) {
-    //call to web API
-	var server = 'http://localhost:51671';
-    var Url = server +'/api/Customer/getAllCustomers'
-    $http({
-        method: 'GET',
-        url: Url
-    }).success(function (customerList) {
-        $scope.AllCustomer = customerList;
-    }).error(function () {
-        console.log('An error in getAllCustomer');
-    });
+		$scope.GetCustomerByCustomerID = function (customerID) {
+			//Call to web API
+			var Url = '/api/Customer/getCustomerByCustomerID';
+			$http({
+				method: 'GET',
+				url: Url,
+				params: { customerID: customerID }
+			}).success(function (customerList) {
+				$scope.CustomerByID = customerList;
+			}).error(function () {
+				cosole.log('error in GetCustomerByCustomerID')
+			});
+		}
 
-    $scope.GetCustomerByCustomerID = function (customerID) {
-        //Call to web API
-        var Url = '/api/Customer/getCustomerByCustomerID';
-        $http({
-            method: 'GET',
-            url: Url,
-            params: { customerID: customerID }
-        }).success(function (customerList) {
-            $scope.CustomerByID = customerList;
-        }).error(function () {
-            cosole.log('error in GetCustomerByCustomerID')
-        });
-    }
+	});
 
-});
+})();
